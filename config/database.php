@@ -63,6 +63,17 @@ return [
             ]) : [],
         ],
 
+        'bg_db' => [
+            'driver' => 'mysql',
+            'host' => '127.0.0.1',
+            'database' => 'bantargebang',
+            'username' => 'ebik',
+            'password' => 'Ebik123$',
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
