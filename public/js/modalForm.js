@@ -22,12 +22,28 @@ function bindForm(dialog) {
 
 function showSuccessMessage() {
     Swal.fire({
-        position: "top-end",
+        icon: 'success',
         type: "success",
         title: "Data berhasil disimpan!",
+        timerProgressBar: true,
         showConfirmButton: false,
-        timer: 1000,
-    }).then(function () {
+        timer: 2000,
+        didOpen: () => {
+            Swal.showLoading()
+            const b = Swal.getHtmlContainer().querySelector('b')
+            timerInterval = setInterval(() => {
+              b.textContent = Swal.getTimerLeft()
+            }, 100)
+          },
+          willClose: () => {
+            clearInterval(timerInterval)
+          }
+        }).then((result) => {
+          /* Read more about handling dismissals below */
+          if (result.dismiss === Swal.DismissReason.timer) {
+            console.log('I was closed by the timer')
+          }
+        }).then(function () {
         loadContent();
     });
 }

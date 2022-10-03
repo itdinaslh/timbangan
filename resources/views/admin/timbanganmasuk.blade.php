@@ -52,45 +52,9 @@
             </div>
         </div>
     </div>
+    
     <div class="col-xl-12 col-xxl-12">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="breadcomb-list">
-                                <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 col- text-center">
-                                    <div class="breadcomb-wp">
-                                        <div class="breadcomb-ctn text-center">
-                                            <h1>TRUK SEBELUMNYA</h1>
-                                            <div id="prevdata"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row align-items-center">
-                            <div class="breadcomb-list">
-                                <div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 col- text-center">
-                                    <div class="breadcomb-wp">
-                                        <div class="breadcomb-ctn text-center">
-                                            <h1>TRUK SEKARANG</h1>
-                                            <div id="showdata"><h1 style='font-weight:normal;padding-top:40px;'>Tanggal : {{ $getnopol->tanggal }} KG</h1><h1 style='font-weight:normal;padding-top:30px;'>No Pintu : {{ $getnopol->nopintu }}</h1><br><h1 style='font-weight:normal;padding-top:10px;'> No Lambung : {{ $getnopol->nopol }}</h1><br>   <h1 style='font-weight:normal;padding-top:10px;'>Berat : {{ $getnopol->berat }} KG</h1><br></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <livewire:admin.timbanganmasuk.show-display>
         
     </div>
     <div class="col-xl-12 col-xxl-12">
@@ -99,7 +63,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>Operator Masuk 
-                            <span style="font-size:12px;">{{ $groupname->groupname }}</span>
+                            <span style="font-size:12px;"></span>
                         </h2>
                         <div class="data-table-list">
                             <div class="table-responsive">
@@ -136,16 +100,7 @@
                         <h2>Daftar Transaksi</h2>
                         <div class="data-table-list">
                             <div class="table-responsive">
-                                <table id="table" class="display" style="min-width: 845px">
-                                    <thead>
-                                        <tr>
-                                            <th data-field="trans_date">Masuk</th>
-                                            <th data-field="door_id">Lambung</th>
-                                            <th data-field="truck_id">Truk ID</th>
-                                            <th data-field="weight">Berat Masuk</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                <livewire:admin.timbanganmasuk.table-trans>
                             </div>
                         </div>
                     </div>
@@ -263,31 +218,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
 <script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
 <script>
-    var table = $('#table').DataTable({
-        pageLength : 5,
-        lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
-        language: {
-            paginate: {
-            next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-            previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>' 
-            }
-        },
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: '{{ route('listmasuk') }}',
-            method: 'GET',
-        },
-        columns: [
-            {data:'trans_date', name:'trans_date'},
-            {data:'door_id', name:'door_id'},
-            {data:'truck_id', name:'truck_id'},
-            {data: 'weight', name: 'weight', orderable: false, searchable: false},
-        ],
-    });
-    setInterval( function () {
-        table.ajax.reload();
-    }, 10000 );
     $("body").on('keypress','#rfidauto',function(e) {
         var rfid = $('#rfidauto').val();
         var berat = $('#beratauto').val();
@@ -431,31 +361,31 @@
         }
     }
         
-    function showdisplay(){
-        $.ajax({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-            type: "GET",
-            url: '{{ route('showdisplay', 'masuk') }}',
-            datatype: 'html',
-            success: function (response){
-                if(document.getElementById('hidetext').value != response['nopol']){
-                var prev_data = $("#showdata").html();
-                $("#prevdata").html(prev_data);
-                document.getElementById('showdata').innerHTML = "<h1 style='font-weight:normal;padding-top:40px;'>Tanggal : "+response['tanggal']+" KG</h1><br><h1 style='font-weight:normal;padding-top:10px;'>No Pintu : "+response['nopintu']+"</h1><br><h1 style='font-weight:normal;padding-top:10px;'> No Lambung : "+response['nopol']+"</h1><h1 style='font-weight:normal;padding-top:10px;'>Berat : "+response['berat']+" KG</h1><br>";
-                document.getElementById('hidetext').value = response['nopol'];
-                    $("#showdata").fadeTo(10000, 500).slideUp(500, function(){
-                        var prev_data = $("#showdata").html();
-                        $("#prevdata").html(prev_data);
-                        $("#showdata").slideUp(500);
-                    });   
-                }
-            }
-        });
-    }
+    // function showdisplay(){
+    //     $.ajax({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //                 },
+    //         type: "GET",
+    //         url: '{{ route('showdisplay', 'masuk') }}',
+    //         datatype: 'html',
+    //         success: function (response){
+    //             if(document.getElementById('hidetext').value != response['nopol']){
+    //             var prev_data = $("#showdata").html();
+    //             $("#prevdata").html(prev_data);
+    //             document.getElementById('showdata').innerHTML = "<h1 style='font-weight:normal;padding-top:40px;'>Tanggal : "+response['tanggal']+" KG</h1><br><h1 style='font-weight:normal;padding-top:10px;'>No Pintu : "+response['nopintu']+"</h1><br><h1 style='font-weight:normal;padding-top:10px;'> No Lambung : "+response['nopol']+"</h1><h1 style='font-weight:normal;padding-top:10px;'>Berat : "+response['berat']+" KG</h1><br>";
+    //             document.getElementById('hidetext').value = response['nopol'];
+    //                 $("#showdata").fadeTo(10000, 500).slideUp(500, function(){
+    //                     var prev_data = $("#showdata").html();
+    //                     $("#prevdata").html(prev_data);
+    //                     $("#showdata").slideUp(500);
+    //                 });   
+    //             }
+    //         }
+    //     });
+    // }
 
-    setInterval(showdisplay,  5000);
+    // setInterval(showdisplay,  5000);
 
     setInterval(function(){
         $("#cctvmasuk").attr('src', 'http://192.168.1.190/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=admin&password=admin123');

@@ -1850,28 +1850,6 @@ class APIController extends Controller
         echo "</table>";
     }
 
-    public function listtimbangmasuk()
-    {
-        $data = Struck::select([
-            'trans_date', 'door_id','truck_id','weight'
-        ])->where('stat_timbang', 0)
-        ->whereBetween('trans_date_after', [DB::raw('DATE_SUB(NOW(), INTERVAL 24 hour)'), Carbon::now()]);
-        $datatables = Datatables::of($data);
-        return $datatables
-        ->make(true);
-    }
-
-    public function listtimbangkeluar()
-    {
-        $data = Struck::select([
-            'trans_date_after', 'door_id','truck_id', DB::raw('(weight - weight_after) as net'), 'id'
-        ])->where('stat_timbang', 1)
-        ->whereBetween('trans_date_after', [DB::raw('DATE_SUB(NOW(), INTERVAL 24 hour)'), Carbon::now()]);
-        $datatables = Datatables::of($data);
-        return $datatables
-        ->make(true);
-    }
-
     public function printulang()
     {
         $query = Db::table('transaction_log')->select('id')

@@ -20,9 +20,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <livewire:admin.struck searchable="name, email" exportable/>  
-                </div>
+                <livewire:admin.struck searchable="name, email" exportable/>  
             </div>
         </div>
     </div>
@@ -32,5 +30,5 @@
 @push('scripts')
 <!-- Datatable -->
 <script src="/pages/js/struck.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 @endpush

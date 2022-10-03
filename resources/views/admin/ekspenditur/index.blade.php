@@ -33,5 +33,5 @@
 @push('scripts')
 <!-- Datatable -->
 <script src="/pages/js/ekspendetur.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
 @endpush

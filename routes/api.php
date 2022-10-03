@@ -51,8 +51,6 @@ Route::post('/getper', [APIController::class, 'getper'])->name('getper');
 Route::post('gettransaksi', [APIController::class, 'daftartransaksi'])->name('gettransaksi');
 Route::post('/simpanauto/masuk',[APIController::class, 'simpanauto'])->name('saveauto');
 Route::get('/print/ulang', [APIController::class, 'printulang'])->name('printu');
-Route::get('/listtimbangmasuk', [APIController::class, 'listtimbangmasuk'])->name('listmasuk');
-Route::get('/listtimbangkeluar', [APIController::class, 'listtimbangkeluar'])->name('listkeluar');
 Route::post('/simpanauto/keluar', [APIController::class, 'simpanauto2'])->name('saveauto2');
 Route::get('/setting', [APIController::class, 'settingmanualauto'])->name('sm');
 Route::post('/jumlahzona', [APIController::class, 'jumlahzona'])->name('jz');

@@ -29,34 +29,38 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-hover m-b-0 table-bordered table-striped" wire:poll>
+        <table class="table table-hover m-b-0 table-bordered table-striped text-center" wire:poll>
             <thead style="background-color: transparent;">
-                <tr class="text-center">
+                <tr class="">
                     <th>No</th>
-                    <th>Tanggal Masuk</th>
-                    <th>Tanggal Keluar</th>
-                    <th>No. Pintu</th>
-                    <th>Truk ID</th>
-                    <th>Berat Masuk</th>
-                    <th>Berat Keluar</th>
-                    <th>Actions</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $row)
-                    <tr>
-                        <td class="text-center">{{$row->id}}</td>
-                        <td>{{$row->trans_date}}</td>
-                        <td>{{$row->trans_date_after}}</td>
-                        <td>{{$row->door_id}}</td>
-                        <td>{{$row->truck_id}}</td>
-                        <td>{{$row->weight}}</td>
-                        <td>{{$row->weight_after}}</td>
-                        <td style="width: 10%; max-width: 15%">
-                            <button class="btn btn-clean font-weight-bolder showMe" data-href="/edit_transaksi/edit/{{$row->id}}"><i class="la la-edit"></i></button>
-                        </td>
-                    </tr>
-                @endforeach
+                @foreach ($data as $key => $user)
+                <tr>
+                  <td>{{ $user->id }}</td>
+                  <td>{{ $user->name }}</td>
+                  <td>{{ $user->email }}</td>
+                  <td>
+                    @if(!empty($user->getRoleNames()))
+                      @foreach($user->getRoleNames() as $v)
+                         <label class="badge badge-success">{{ $v }}</label>
+                      @endforeach
+                    @endif
+                  </td>
+                  <td>
+                     <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+                     <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+                      {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+                          {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                      {!! Form::close() !!}
+                  </td>
+                </tr>
+               @endforeach
             </tbody>
         </table>
         <div class="col-md-12 mt-3">

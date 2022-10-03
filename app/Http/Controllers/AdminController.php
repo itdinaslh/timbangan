@@ -7,7 +7,7 @@ use DB;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Truck;
-use App\Models\Ekspenditur;
+use App\Models\Ekspenditur_list;
 use App\Models\Absensi;
 use Auth;
 use DateTime;
@@ -41,7 +41,7 @@ class AdminController extends Controller
             ->first();
             $getnopol = DB::connection('bg_db')->table('display_transaction')->where('tipe', '=', 'masuk')
                 ->first();
-            $transaction = DB::select(DB::raw("select * from transaction_log where stat_timbang = '0' and trans_date between date_sub(NOW(), INTERVAL 24 hour) and NOW() ORDER BY `transaction_log`.`trans_date` DESC"));
+            $transaction = DB::connection('bg_db')->select(DB::raw("select * from transaction_log where stat_timbang = '0' and trans_date between date_sub(NOW(), INTERVAL 24 hour) and NOW() ORDER BY `transaction_log`.`trans_date` DESC"));
             $socket = "50000";
             $date = date('Y-m-d');
             $groupname = DB::connection('bg_db')->table('group_user')->join('group_list', 'group_user.group_id', '=', 'group_list.id')
@@ -49,13 +49,13 @@ class AdminController extends Controller
                 ->where('group_user.user_id', '=', Auth::user()
                 ->id)
                 ->first();
-            $cek = Absensi::where('groupuser_id', '=', $groupname->id)
+            $cek = Absensi::where('groupuser_id', '=', 2)
                 ->where('tanggal_kehadiran', '=', $date)->get();
             if ($cek == "[]")
             {
                 $getgroup = DB::connection('bg_db')->table('group_user')->join('group_list', 'group_user.group_id', '=', 'group_list.id')
                     ->select('group_user.id', 'group_user.group_id')
-                    ->where('group_user.group_id', '=', $groupname->group_id)
+                    ->where('group_user.group_id', '=', 2)
                     ->get();
                 foreach ($getgroup as $p)
                 {
@@ -73,10 +73,10 @@ class AdminController extends Controller
                 ->join('absensi', 'group_user.id', '=', 'absensi.groupuser_id')
                 ->select('group_user.*', 'group_list.groupdivision', 'group_list.groupname', 'users.name', 'absensi.kehadiran')
                 ->where('group_list.groupdivision', '=', 1)
-                ->where('group_id', '=', $existinggroup->group_id)
+                ->where('group_id', '=', 2)
                 ->where('tanggal_kehadiran', '=', $date)->get();
 
-            $daftarblock = Ekspenditur::where('status', '!=', "")->where('status', '!=', 'none')
+            $daftarblock = Ekspenditur_list::where('status', '!=', "")->where('status', '!=', 'none')
                 ->get();
             $blokir = DB::connection('bg_db')->table('rfid_card')->join('ekspenditur_list', 'rfid_card.ekspenditur', '=', 'ekspenditur_list.id')
                 ->select('rfid_card.*', 'ekspenditur_list.ekspenditur_name', 'ekspenditur_list.status', 'ekspenditur_list.tgl_izin')
@@ -91,7 +91,7 @@ class AdminController extends Controller
             ->first();
             $getnopol = DB::connection('bg_db')->table('display_transaction')->where('tipe', '=', 'keluar')
                 ->first();
-            $transaction = DB::select(DB::raw("select * from transaction_log where trans_date_after between date_sub(NOW(), INTERVAL 24 hour) and NOW() ORDER BY trans_date_after DESC"));
+            $transaction =  DB::connection('bg_db')->select(DB::raw("select * from transaction_log where trans_date_after between date_sub(NOW(), INTERVAL 24 hour) and NOW() ORDER BY trans_date_after DESC"));
             $socket = "50000";
             $date = date('Y-m-d');
             $groupname = DB::connection('bg_db')->table('group_user')->join('group_list', 'group_user.group_id', '=', 'group_list.id')
@@ -99,13 +99,13 @@ class AdminController extends Controller
                 ->where('group_user.user_id', '=', Auth::user()
                 ->id)
                 ->first();
-            $cek = Absensi::where('groupuser_id', '=', $groupname->id)
+            $cek = Absensi::where('groupuser_id', '=', 2)
                 ->where('tanggal_kehadiran', '=', $date)->get();
             if ($cek == "[]")
             {
                 $getgroup = DB::connection('bg_db')->table('group_user')->join('group_list', 'group_user.group_id', '=', 'group_list.id')
                     ->select('group_user.id', 'group_user.group_id')
-                    ->where('group_user.group_id', '=', $groupname->group_id)
+                    ->where('group_user.group_id', '=', 2)
                     ->get();
                 foreach ($getgroup as $p)
                 {
@@ -303,7 +303,7 @@ class AdminController extends Controller
             ->first();
         if (!empty($cekrfid->ekspenditur))
         {
-            $cekeks = Ekspenditur::where('id', '=', $cekrfid->ekspenditur)
+            $cekeks = Ekspenditur_list::where('id', '=', $cekrfid->ekspenditur)
                 ->first();
             if ($cekeks->status == "syarat")
             {
@@ -418,7 +418,7 @@ class AdminController extends Controller
         {
             return redirect()
                 ->route('timbanganmasuk')
-                ->with('error', 'Ekspenditur tidak terdaftar pada pintu ini');
+                ->with('error', 'Ekspenditur_list tidak terdaftar pada pintu ini');
         }
     }
 
@@ -452,7 +452,7 @@ class AdminController extends Controller
                 ->first();
             $cekrfid = Truck::select('ekspenditur')->where('door_id', '=', $request->door_id)
                 ->first();
-            $cekeks = Ekspenditur::where('id', '=', $cekrfid->ekspenditur)
+            $cekeks = Ekspenditur_list::where('id', '=', $cekrfid->ekspenditur)
                 ->first();
             if ($cekeks->status == "syarat")
             {
@@ -565,7 +565,7 @@ class AdminController extends Controller
                     ->first();
                 $truck = Truck::where('truck_id', '=', $datase->truck_id)
                     ->first();
-                $ekspenditur = Ekspenditur::where('id', '=', $truck->ekspenditur)
+                $ekspenditur = Ekspenditur_list::where('id', '=', $truck->ekspenditur)
                     ->first();
                 $pre = explode("-", $datase->trans_date_after);
                 $pre = $pre[1];
@@ -591,7 +591,7 @@ class AdminController extends Controller
                 ->first();
             $cekrfid = Truck::select('ekspenditur')->where('door_id', '=', $request->door_id)
                 ->first();
-            $cekeks = Ekspenditur::where('id', '=', $cekrfid->ekspenditur)
+            $cekeks = Ekspenditur_list::where('id', '=', $cekrfid->ekspenditur)
                 ->first();
 
             if ($cekeks->status == "syarat")
@@ -634,7 +634,7 @@ class AdminController extends Controller
                 ->first();
             $cekrfid = Truck::select('ekspenditur')->where('door_id', '=', $request->door_id)
                 ->first();
-            $cekeks = Ekspenditur::where('id', '=', $cekrfid->ekspenditur)
+            $cekeks = Ekspenditur_list::where('id', '=', $cekrfid->ekspenditur)
                 ->first();
 
             $current = $getstruk->id_struk;
@@ -731,7 +731,7 @@ class AdminController extends Controller
                     ->first();
                 $truck = Truck::where('door_id', '=', $datase->door_id)
                     ->first();
-                $ekspenditur = Ekspenditur::where('id', '=', $truck->ekspenditur)
+                $ekspenditur = Ekspenditur_list::where('id', '=', $truck->ekspenditur)
                     ->first();
                 $pre = explode("-", $datase->trans_date_after);
                 $pre = $pre[1];

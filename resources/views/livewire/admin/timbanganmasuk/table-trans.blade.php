@@ -4,7 +4,7 @@
             <div class="form-inline">
                 <div class="col-mb-12 row">
                     <label class="col-md-2 col-form-label">Show</label>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                         <select class="form-control" wire:model='show'>
                             <option value="5">5</option>
                             <option value="10">10</option>
@@ -29,32 +29,22 @@
         </div>
     </div>
     <div class="table-responsive">
-        <table class="table table-hover m-b-0 table-bordered table-striped" wire:poll>
+        <table class="table table-hover m-b-0 table-bordered table-striped text-center" wire:poll>
             <thead style="background-color: transparent;">
-                <tr class="text-center">
-                    <th>No</th>
-                    <th>Tanggal Masuk</th>
-                    <th>Tanggal Keluar</th>
+                <tr class="">
+                    <th>Masuk</th>
                     <th>No. Pintu</th>
                     <th>Truk ID</th>
                     <th>Berat Masuk</th>
-                    <th>Berat Keluar</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($data as $row)
                     <tr>
-                        <td class="text-center">{{$row->id}}</td>
                         <td>{{$row->trans_date}}</td>
-                        <td>{{$row->trans_date_after}}</td>
                         <td>{{$row->door_id}}</td>
                         <td>{{$row->truck_id}}</td>
                         <td>{{$row->weight}}</td>
-                        <td>{{$row->weight_after}}</td>
-                        <td style="width: 10%; max-width: 15%">
-                            <button class="btn btn-clean font-weight-bolder showMe" data-href="/edit_transaksi/edit/{{$row->id}}"><i class="la la-edit"></i></button>
-                        </td>
                     </tr>
                 @endforeach
             </tbody>

@@ -99,7 +99,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>Operator Masuk 
-                            <span style="font-size:12px;">{{ $groupname->groupname }}</span>
+                            <span style="font-size:12px;"></span>
                         </h2>
                         <div class="data-table-list">
                             <div class="table-responsive">
@@ -133,20 +133,10 @@
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="card-body">
-                        <h2>Daftar Transaksi</h2>
+                        <h2>Daftar Transaksi kelaur</h2>
                         <div class="data-table-list">
                             <div class="table-responsive">
-                                <table id="table" class="display" style="min-width: 845px">
-                                    <thead>
-                                        <tr>
-                                            <th>No Struk</th>
-                                            <th data-field="trans_date">Masuk</th>
-                                            <th data-field="door_id">Lambung</th>
-                                            <th data-field="truck_id">Truk ID</th>
-                                            <th data-field="weight">Nett</th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                <livewire:admin.timbangankeluar.table-trans>
                             </div>
                         </div>
                     </div>
@@ -281,33 +271,6 @@
             }
         });
     });
-
-    var table = $('#table').DataTable({
-        pageLength : 5,
-        lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
-        language: {
-            paginate: {
-            next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-            previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>' 
-            }
-        },
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: '{{ route('listkeluar') }}',
-            method: 'GET',
-        },
-        columns: [
-            {data:'id', name:'id'},
-            {data:'trans_date_after', name:'trans_date_after'},
-            {data:'door_id', name:'door_id'},
-            {data:'truck_id', name:'truck_id'},
-            {data: 'net', name: 'net', orderable: false, searchable: false},
-        ],
-    });
-    setInterval( function () {
-        table.ajax.reload();
-    }, 10000 );
 
     $("body").on('keypress','#rfidauto',function(e) {
         var rfid = $('#rfidauto').val();
