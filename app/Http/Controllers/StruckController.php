@@ -10,6 +10,7 @@ use Auth;
 
 class StruckController extends Controller
 {
+    //test
     public function index()
     {
         return view('admin.struck.index');
