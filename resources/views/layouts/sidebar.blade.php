@@ -3,10 +3,10 @@
         <ul class="metismenu" id="menu">
             <li class="dropdown header-profile">
                 <a class="nav-link" href="javascript:void(0);" role="button" data-bs-toggle="dropdown">
-                    <img src="images/profile/pic1.jpg" width="20" alt=""/>
+                    <img src="/images/profile/pic1.jpg" width="20" alt=""/>
                     <div class="header-info ms-3">
                         <span class="font-w600 ">Hi, <b> {{ Auth::user()->name }}     </b></span>
-                        <small class="text-end font-w400">william@gmail.com</small>
+                        <small class="text-end font-w400">{{ Auth::user()->email }} </small>
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
@@ -46,8 +46,10 @@
                     <li><a href="/data_ekspenditur">Data Ekspenditur</a></li>
                     <li><a href="/data_tipe_truk">Data Tipe Truk</a></li>
                     <li><a href="/data_jumlah_roda">Data Jumlah Roda</a></li>
-                    <li><a href="/data_user">Data user</a></li>
+                    <li><a href="/users">Data user</a></li>
                     <li><a href="/data_group">Data Group</a></li>
+                    <li><a href="/permission">Data Permission</a></li>
+                    <li><a href="/roles">Data Roles</a></li>
                 </ul>
             </li>
             <li>

@@ -15,14 +15,14 @@
                 <div class="form-group">
                     <label>Tanggal Masuk</label>
                     <input type="hidden" name="id" value="{{$data->id}}">
-                    <input type="text" name="trans_date" class="form-control" required autocomplete="off"
+                    <input type="datetime-local" name="trans_date" class="form-control" required autocomplete="off"
                         value="{{$data->trans_date}}" />
                 </div>
             </div>
             <div class="col-xl-6">
                 <div class="form-group">
                     <label>Tanggal Keluar</label>
-                    <input type="text" name="trans_date_after" class="form-control" required autocomplete="off"
+                    <input type="datetime-local" name="trans_date_after" class="form-control" required autocomplete="off"
                         value="{{$data->trans_date_after}}" />
                 </div>
             </div>

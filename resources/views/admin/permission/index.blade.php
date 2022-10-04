@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('Title', 'Edit Ekspendetur')
+@section('Title', 'Edit Permission')
 
 @push('styles')
 <!-- Datatable -->
@@ -11,17 +11,17 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Edit Ekspendetur</h4>
+                <h4 class="card-title">Data Permission</h4>
                 <div class="card-toolbar">
-                    <button class="btn btn-success font-weight-bolder showMe" data-href="/data_ekspenditur/add">
+                    <button class="btn btn-success font-weight-bolder showMe" data-href="/permission/add">
                             <!--end::Svg Icon-->
-                        </span>Tambah Ekspendetur
+                        </span>Tambah Permission
                     </button>
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <livewire:admin.ekspenditur searchable="name, email" exportable/>                        
+                    <livewire:admin.permision searchable="name, email" exportable/>                        
                 </div>
             </div>
         </div>

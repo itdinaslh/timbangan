@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StruckController;
 use App\Http\Controllers\TruckController;
 use App\Http\Controllers\EkspenditurController;
+use App\Http\Controllers\PermissionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,14 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::get('/home', [AdminController::class, 'AdminDashboard'])->name('home');
+
+    //permission
+    Route::get('/permission', [PermissionController::class, 'index']);
+    Route::get('/permission/add/', [PermissionController::class, 'Add']);
+    Route::get('/permission/edit/{id}', [PermissionController::class, 'Edit']);
+    Route::post('/permission/store', [PermissionController::class, 'store']);
+    Route::post('/permission/delete/{id}', [PermissionController::class, 'delete']);
+
     Route::get('/', [AdminController::class, 'AdminDashboard']);
 
     //operator timbangan masuk

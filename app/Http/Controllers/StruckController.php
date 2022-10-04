@@ -7,6 +7,7 @@ use App\Models\Struck;
 use DataTables;
 use DB;
 use Auth;
+use Carbon\Carbon;
 
 class StruckController extends Controller
 {
@@ -28,7 +29,12 @@ class StruckController extends Controller
         } else {
             $data = Struck::findOrFail($v->id);
         }
-
+        $data->trans_scale = "Timbangan Keluar";
+        $data->rfid_tag = "";
+        $data->id_struk = "";
+        $data->stat_timbang = 1;
+        $data->pd_pasar = 0;
+        $data->dwell = Carbon::parse($v->trans_date_after)->timestamp - Carbon::parse($v->trans_date)->timestamp;
         $data->trans_date = $v->trans_date;
         $data->trans_date_after = $v->trans_date_after;
         $data->door_id = $v->door_id;

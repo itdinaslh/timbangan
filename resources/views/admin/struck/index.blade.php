@@ -30,5 +30,5 @@
 @push('scripts')
 <!-- Datatable -->
 <script src="/pages/js/struck.js"></script>
-<script src="/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+<script src="/js/sweetalert2@11.js"></script>
 @endpush
