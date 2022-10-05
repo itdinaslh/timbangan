@@ -64,7 +64,7 @@
                         <td>{{$row->tipe}}</td>
                         <td>{{$row->status}}</td>
                         <td style="width: 10%; max-width: 15%">
-                            <button class="btn btn-clean font-weight-bolder showMe" data-href="/edit_transaksi/edit/{{$row->id}}"><i class="la la-edit"></i></button>
+                            <button class="btn btn-clean font-weight-bolder showMe" data-href="/data_truk/edit/{{$row->id}}"><i class="la la-edit"></i></button>
                         </td>
                     </tr>
                 @endforeach
