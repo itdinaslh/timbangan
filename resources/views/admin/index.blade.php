@@ -15,6 +15,7 @@
 @endsection
 
 @push('scripts')
+<script src="/js/sweetalert2@11.js"></script>
 <!-- Dashboard 1 -->
 {{-- <script src="/js/dashboard/dashboard-1.js"></script> --}}
 <script>

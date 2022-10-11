@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Truck;
+use App\Models\TipeTruk;
 use DataTables;
 use DB;
 use Auth;
+use Carbon\Carbon;
 
 class TruckController extends Controller
 {
@@ -16,11 +18,22 @@ class TruckController extends Controller
     }
 
     public function Add() {
-        return view('admin.truck.addedit', ['data' => new Truck]);
+        $area = Truck::select(DB::raw('SUBSTRING_INDEX(area, ",", 1) as area'))->distinct()->get();
+            $penugasan = Truck::select(DB::raw('SUBSTRING_INDEX(area, ",", -1) as area'))->distinct()->get();
+            $tipe = TipeTruk::select('tipe', 'initial')->get();
+        return view('admin.truck.addedit', ['data' => new Truck, 'area'=>$area, 'penugasan'=>$penugasan, 'tipe'=>$tipe]);
     }
 
     public function Edit($id) {
-        return view('admin.truck.addedit', ['data' => Truck::findOrFail($id)]);
+        $data = DB::connection('bg_db')->table('rfid_card as a')
+            ->leftJoin('ekspenditur_list', 'a.ekspenditur', '=', 'ekspenditur_list.id')
+            ->leftJoin('tipe_truk', 'a.tipe', '=', 'tipe_truk.initial')
+            ->select('a.*', 'tipe_truk.initial', 'ekspenditur_list.ekspenditur_name')
+            ->where('a.id', '=', $id)->first();
+            $area = Truck::select(DB::raw('SUBSTRING_INDEX(area, ",", 1) as area'))->distinct()->get();
+            $penugasan = Truck::select(DB::raw('SUBSTRING_INDEX(area, ",", -1) as area'))->distinct()->get();
+            $tipe = TipeTruk::select('tipe', 'initial')->get();
+        return view('admin.truck.addedit', ['data' => $data, 'area'=>$area, 'penugasan'=>$penugasan, 'tipe'=>$tipe]);
     }
 
     public function store(Request $v) {
@@ -30,22 +43,20 @@ class TruckController extends Controller
             $data = Truck::findOrFail($v->id);
         }
 
-        $data->rfid_id = $v->rfid_id;
-        $data->truck_id = $v->truck_id;
-        $data->ekspenditur = $v->ekspenditur;
+        $area = $v->area1 . ", " . $v->area2;
+        $data->rfid_id = $v->rfid;
+        $data->pd_pasar = "";
+        $data->avg_masuk = 0;
+        $data->avg_in = 0;
+        $data->status = $v->status;
+        $data->truck_id = $v->truk_id;
         $data->door_id = $v->door_id;
-        $data->area = $v->area;
-        $data->tanggal = $v->tanggal;
+        $data->ekspenditur = $v->ekspenditur;
+        $data->area = $area;
         $data->tipe = $v->tipe;
         $data->jumlah_roda = $v->jumlah_roda;
-        $data->pd_pasar = $v->pd_pasar;
-        $data->avg_masuk = $v->avg_masuk;
-        $data->avg_keluar = $v->avg_keluar;
-        $data->lokasi_b2b = $v->lokasi_b2b;
-        $data->alamat_b2b = $v->alamat_b2b;
-        $data->kecamatan_b2b = $v->kecamatan_b2b;
         $data->kir = $v->kir;
-        $data->status = $v->status;
+        $data->tanggal = Carbon::now();
         $data->save();
         return ['success' => true];
     }

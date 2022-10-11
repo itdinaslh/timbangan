@@ -4,15 +4,15 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    loadTable();
 });
 
-function loadContent() {
-    loadTable();
-}
+
 
 $(document).on('shown.bs.modal', function () {
     PopulateCity();
+    $('#area').select2();
+    $('#penugasan').select2();
+    $('#area').select2();
 });
 
 function PopulateCity() {
@@ -43,34 +43,6 @@ function PopulateCity() {
     });
 }
 
-function loadTable() {
-    $('#example').DataTable().clear().destroy();
-    $('#example').DataTable({
-        responsive: true,
-        language: {
-			paginate: {
-			  next: '<i class="fa fa-angle-double-right" aria-hidden="true"></i>',
-			  previous: '<i class="fa fa-angle-double-left" aria-hidden="true"></i>' 
-			}
-		  },
-        processing: true,
-        serverSide: true,
-        ajax: {
-            url: '/data_truk/table',
-            method: 'GET',
-        },
-        columns: [
-            {data:'truck_id', name:'truck_id'},
-            {data:'door_id', name:'door_id'},
-            {data:'rfid_id', name:'rfid_id'},
-            {data:'ekspenditur', name:'ekspenditur'},
-            {data:'status', name:'status'},
-            {data:'kir', name:'kir'},
-            {data:'tipe', name:'tipe'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-        ],
-    });
-}
 
 $('body').on('click', '.deleteProduct', function (){
     var product_id = $(this).data("id");

@@ -17,10 +17,10 @@ class Truck extends Component
     
     public function render()
     {
-        $data = DB::connection('bg_db')->table('rfid_card')
-            ->select([
-                'rfid_id', 'truck_id', 'ekspenditur', 'door_id','kir','status','tipe', 'id'
-            ])
+        $data = DB::connection('bg_db')->table('rfid_card as a')
+            ->leftJoin('ekspenditur_list', 'a.ekspenditur', '=', 'ekspenditur_list.id')
+            ->leftJoin('tipe_truk', 'a.tipe', '=', 'tipe_truk.initial')
+            ->select('a.*', 'tipe_truk.initial', 'ekspenditur_list.ekspenditur_name')
             ->when($this->filter, function ($builder) {
                 $builder->where('status', $this->filter);
             })
