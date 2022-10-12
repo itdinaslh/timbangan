@@ -22,7 +22,7 @@ class Truck extends Component
             ->leftJoin('tipe_truk', 'a.tipe', '=', 'tipe_truk.initial')
             ->select('a.*', 'tipe_truk.initial', 'ekspenditur_list.ekspenditur_name')
             ->when($this->filter, function ($builder) {
-                $builder->where('status', $this->filter);
+                $builder->where('a.status', $this->filter);
             })
             ->when($this->search, function ($builder) {
                 $builder->where(function ($builder) {

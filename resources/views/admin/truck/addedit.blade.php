@@ -48,6 +48,7 @@
             <div class="col-xl-6">
                 <div class="form-group">
                     <label>Area</label>
+                    @if ($data->id != 0)
                     <select name="area1" id="area" class="form-control"  autocomplete="off">
                         @if($data->area == "")
                         <option value="">Pilih area</option>
@@ -56,11 +57,16 @@
                             <option value="{{ $a->area }}">{{ $a->area }}</option>
                         @endforeach
                     </select>
+                    @else
+                    <input type="text" name="door_id" class="form-control"  autocomplete="off"
+                        value="{{$data->door_id}}" />
+                    @endif
                 </div>
             </div>
             <div class="col-xl-6">
                 <div class="form-group">
                     <label>Penugasan</label>
+                    @if ($data->id != 0)
                     <select name="area2" id="penugasan" class="form-control"  autocomplete="off">
                         @if($data->area == "")
                         <option value="">Pilih Penugasan</option>
@@ -69,6 +75,11 @@
                             <option value="{{ $a->area }}">{{ $a->area }}</option>
                         @endforeach
                     </select>
+                    @else
+                    <input type="text" name="area2" class="form-control"  autocomplete="off"
+                        value="{{$data->door_id}}" />
+                    @endif
+                    
                 </div>
             </div>
         </div>

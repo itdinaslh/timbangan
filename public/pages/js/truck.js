@@ -12,11 +12,10 @@ $(document).on('shown.bs.modal', function () {
     PopulateCity();
     $('#area').select2();
     $('#penugasan').select2();
-    $('#area').select2();
 });
 
 function PopulateCity() {
-    $("#ekpenditur").select2({
+    $("#ekspenditur").select2({
         placeholder: "Pilih Ekpenditur",
         allowClear: true,
         ajax: {
