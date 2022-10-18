@@ -35,7 +35,7 @@
                 <div class="card-body d-flex">
                     <div>
                         <span class="text-white fs-18">Statik Kumulatif :</span>
-                        <h2 class="text-white invoice-num"> {{ $count_truk }}Truk<br><small>{{ $count_komulatif }} Tonase</small></h2>
+                        <h2 class="text-white invoice-num"> {{ $count_truk }}Truk<br><small>{{ round($count_komulatif, 0) }} Tonase</small></h2>
                         
                         <select class="form-control" wire:model='waktu'>
                             <option value="kemarin">Per Kemarin</option>
