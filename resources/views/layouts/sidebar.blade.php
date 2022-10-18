@@ -58,11 +58,11 @@
                     <span class="nav-text">Info</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="/reprint_struck">Info Truk</a></li>
-                    <li><a href="/unduh_laporan">Info Ekspenditur</a></li>
-                    <li><a href="/email_list">List Group</a></li>
-                    <li><a href="/database_truk">Cek Absen</a></li>
-                    <li><a href="/database_truk">Login History</a></li>
+                    <li><a href="/info_truck">Info Truk</a></li>
+                    <li><a href="/info_ekspenditur">Info Ekspenditur</a></li>
+                    <li><a href="/list_group">List Group</a></li>
+                    <li><a href="/cek_absen">Cek Absen</a></li>
+                    <li><a href="/login_history">Login History</a></li>
                 </ul>
             </li>
             <li>

@@ -45,8 +45,6 @@ Route::post('/getlastidspj', [APIController::class, 'getlastidspj'])->name('getl
 Route::post('/get/ritasetonase', [APIController::class, 'getrittonase'])->name('getrittonase');
 Route::post('/get/doubleritase', [APIController::class, 'doubleritase'])->name('getdoubleritase');
 Route::get('/get/showdisplay/{type}', [APIController::class, 'showdisplay'])->name('showdisplay');
-Route::post('/getper', [APIController::class, 'getper'])->name('getper');
-
 
 Route::post('gettransaksi', [APIController::class, 'daftartransaksi'])->name('gettransaksi');
 Route::post('/simpanauto/masuk',[APIController::class, 'simpanauto'])->name('saveauto');

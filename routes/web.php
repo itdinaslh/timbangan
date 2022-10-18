@@ -9,6 +9,7 @@ use App\Http\Controllers\StruckController;
 use App\Http\Controllers\TruckController;
 use App\Http\Controllers\EkspenditurController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\InfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,13 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::get('/home', [AdminController::class, 'AdminDashboard'])->name('home');
+
+    //info
+    Route::get('/info_truck', [InfoController::class, 'truck']);
+    Route::get('/info_ekspenditur', [InfoController::class, 'info_ekspenditur']);
+    Route::get('/list_group', [InfoController::class, 'list_group']);
+    Route::get('/cek_absen', [InfoController::class, 'cek_absen']);
+    Route::get('/login_history', [InfoController::class, 'login_history']);
 
     //permission
     Route::get('/permission', [PermissionController::class, 'index']);
