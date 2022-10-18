@@ -26,11 +26,11 @@ class Truck extends Component
             })
             ->when($this->search, function ($builder) {
                 $builder->where(function ($builder) {
-                    $builder->where('rfid_id', 'like', '%' . $this->search . '%')
-                        ->orWhere('status', 'like', '%' . $this->search . '%')
-                        ->orWhere('tipe', 'like', '%' . $this->search . '%')
-                        ->orWhere('door_id', 'like', '%' . $this->search . '%')
-                        ->orWhere('truck_id', 'like', '%' . $this->search . '%');
+                    $builder->where('a.rfid_id', 'like', '%' . $this->search . '%')
+                        // ->orWhere('a.status', 'like', '%' . $this->search . '%')
+                        // ->orWhere('tipe', 'like', '%' . $this->search . '%')
+                        ->orWhere('a.door_id', 'like', '%' . $this->search . '%')
+                        ->orWhere('a.truck_id', 'like', '%' . $this->search . '%');
                 });
             })->orderBy('id' ,'desc')
         ->paginate($this->show);
