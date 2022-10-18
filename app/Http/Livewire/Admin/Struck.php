@@ -25,11 +25,11 @@ class Struck extends Component
             // })
             ->when($this->search, function ($builder) {
                 $builder->where(function ($builder) {
-                    $builder->where('id', 'like', '%' . $this->search . '%')
-                        ->orWhere('trans_date', 'like', '%' . $this->search . '%')
-                        ->orWhere('trans_date_after', 'like', '%' . $this->search . '%')
-                        ->orWhere('door_id', 'like', '%' . $this->search . '%')
-                        ->orWhere('truck_id', 'like', '%' . $this->search . '%');
+                    $builder->where('id', $this->search);
+                        // ->orWhere('trans_date', 'like', '%' . $this->search . '%')
+                        // ->orWhere('trans_date_after', 'like', '%' . $this->search . '%')
+                        // ->orWhere('door_id', 'like', '%' . $this->search . '%')
+                        // ->orWhere('truck_id', 'like', '%' . $this->search . '%');
                 });
             })->orderBy('id' ,'desc')
         ->paginate($this->show);
