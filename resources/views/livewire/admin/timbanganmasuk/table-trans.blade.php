@@ -50,9 +50,9 @@
             </tbody>
         </table>
         <div class="col-md-12 mt-3">
-            <div class="pull-right">
+            {{-- <div class="pull-right">
                 {{ $table->links() }}
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>
