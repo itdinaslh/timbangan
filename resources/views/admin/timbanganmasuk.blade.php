@@ -100,7 +100,7 @@
                         <h2>Daftar Transaksi</h2>
                         <div class="data-table-list">
                             <div class="table-responsive">
-                                <livewire:admin.timbanganmasuk.table-trans>
+                                <livewire:admin.timbanganmasuk.table-trans  searchable="name" exportable>
                             </div>
                         </div>
                     </div>
