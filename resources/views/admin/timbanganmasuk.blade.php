@@ -9,7 +9,7 @@
 @endpush
 
 @section('content')
-<input type="hidden" id="hidetext" value="{{ $getnopol->nopol }}">
+{{-- <input type="hidden" id="hidetext" value="{{ $getnopol->nopol }}"> --}}
 <div class="row">
     <div class="col-xl-12 col-xxl-12">
         <div class="card">
@@ -59,7 +59,7 @@
     </div>
     <div class="col-xl-12 col-xxl-12">
         <div class="row">
-            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+            {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
                 <div class="card">
                     <div class="card-body">
                         <h2>Operator Masuk 
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="card-body">
