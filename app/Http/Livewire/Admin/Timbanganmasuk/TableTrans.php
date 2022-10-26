@@ -10,6 +10,7 @@ use Carbon\Carbon;
 
 class TableTrans extends Component
 {
+    use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $search = "";
     public $show = 10;

@@ -83,7 +83,7 @@ class AdminController extends Controller
                 ->where('ekspenditur_list.status', '!=', 'none')
                 ->get();
             $listdoor = Truck::select('door_id')->get();
-            return view('admin.timbanganmasuk');
+            return view('admin.timbanganmasuk', compact('transaction', 'socket', 'listdoor', 'daftarblock', 'group', 'groupname', 'blokir', 'getnopol', 'setting'));
         } 
         elseif (Auth::user()->hasRole(['manualkeluar'])) {
             $setting = DB::connection('bg_db')->table('setting')->where('setting_name', '=', 'mode_timbangan')
