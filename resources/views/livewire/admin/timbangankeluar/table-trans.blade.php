@@ -46,7 +46,7 @@
                         <td>{{$row->trans_date_after}}</td>
                         <td>{{$row->door_id}}</td>
                         <td>{{$row->truck_id}}</td>
-                        <td>{{$row->weight}}</td>
+                        <td>{{$row->net}}</td>
                     </tr>
                 @endforeach
             </tbody>
