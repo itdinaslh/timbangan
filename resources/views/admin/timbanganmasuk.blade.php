@@ -54,7 +54,7 @@
     </div>
     
     <div class="col-xl-12 col-xxl-12">
-        <livewire:admin.timbanganmasuk.show-display>
+        {{-- <livewire:admin.timbanganmasuk.show-display> --}}
         
     </div>
     <div class="col-xl-12 col-xxl-12">
