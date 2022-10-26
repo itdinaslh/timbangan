@@ -39,7 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($data as $row)
+                @foreach ($table as $row)
                     <tr>
                         <td>{{$row->trans_date}}</td>
                         <td>{{$row->door_id}}</td>
@@ -51,7 +51,7 @@
         </table>
         <div class="col-md-12 mt-3">
             <div class="pull-right">
-                {{ $data->links() }}
+                {{ $table->links() }}
             </div>
         </div>
     </div>

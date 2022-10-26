@@ -30,6 +30,6 @@ class TableTrans extends Component
         })->orderBy('id' ,'desc')
         ->paginate($this->show);
 
-        return view('livewire.admin.timbanganmasuk.table-trans', ['data' => $data]);
+        return view('livewire.admin.timbanganmasuk.table-trans', ['table' => $data]);
     }
 }

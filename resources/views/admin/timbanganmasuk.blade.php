@@ -387,9 +387,9 @@
 
     // setInterval(showdisplay,  5000);
 
-    setInterval(function(){
-        $("#cctvmasuk").attr('src', 'http://192.168.1.190/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=admin&password=admin123');
-    }, 3000);
+    // setInterval(function(){
+    //     $("#cctvmasuk").attr('src', 'http://192.168.1.190/cgi-bin/api.cgi?cmd=Snap&channel=0&rs=wuuPhkmUCeI9WG7C&user=admin&password=admin123');
+    // }, 3000);
 
     // setInterval(getsocketout, 2000);
     // setInterval(getsocketin, 2000);
