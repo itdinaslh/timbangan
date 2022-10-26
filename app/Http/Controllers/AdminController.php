@@ -31,11 +31,10 @@ class AdminController extends Controller
     }
 
     public function AdminDashboard() {
-        if (Auth::user()->hasRole(['Admin'])) {
+        if (Auth::user()->hasRole(['Admin'])) 
+        {
             return view('admin.index');
-        } elseif (Auth::user()->hasRole(['Admin'])) {    
-            return '/ascan/home';
-        } 
+        }
         elseif (Auth::user()->hasRole(['manualmasuk'])) {
             $setting = DB::connection('bg_db')->table('setting')->where('setting_name', '=', 'mode_timbangan')
             ->first();

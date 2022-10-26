@@ -9,6 +9,8 @@ use DataTables;
 use DB;
 use Auth;
 use Carbon\Carbon;
+use App\Exports\TruckExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TruckController extends Controller
 {
@@ -66,5 +68,10 @@ class TruckController extends Controller
         Truck::find($id)->delete();
 
         return ['success' => true];
+    }
+
+    public function export() 
+    {
+        return Excel::download(new TruckExport, 'truck_tpst.xlsx');
     }
 }

@@ -74,7 +74,7 @@
                     <li><a href="/reprint_struck">Reprint Struck</a></li>
                     <li><a href="/unduh_laporan">Unduh Laporan</a></li>
                     <li><a href="/email_list">Email List</a></li>
-                    <li><a href="/database_truk">Database Truk</a></li>
+                    <li><a href="/data_truk/data">Database Truk</a></li>
                 </ul>
             </li>
             <li>

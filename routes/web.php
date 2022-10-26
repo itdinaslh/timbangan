@@ -35,7 +35,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     //info
     Route::get('/info_truck', [InfoController::class, 'truck']);
-    Route::get('/info_ekspenditur', [InfoController::class, 'info_ekspenditur']);
+    Route::get('/info_ekspenditur', [InfoController::class, 'ekspenditur']);
     Route::get('/list_group', [InfoController::class, 'list_group']);
     Route::get('/cek_absen', [InfoController::class, 'cek_absen']);
     Route::get('/login_history', [InfoController::class, 'login_history']);
@@ -77,6 +77,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_truk/delete/{id}', [TruckController::class, 'delete']);
     Route::get('/data_truk/table', [TruckController::class, 'Ajax']);
     Route::get('/data_truk/search', [TruckController::class, 'search']);
+    Route::get('/data_truk/data', [TruckController::class, 'export']);
 
     //truck
     Route::get('/data_ekspenditur', [EkspenditurController::class, 'index']);
@@ -94,4 +95,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/data_user/delete/{id}', [UserController::class, 'delete']);
     Route::get('/data_user/table', [UserController::class, 'Ajax']);
     Route::get('/data_user/search', [UserController::class, 'search']);
+ 
+
+    //Socket Route
+    Route::get('/timbangan/socket/{type}', [HomeController::class, 'socket'])->name('socket');
 });

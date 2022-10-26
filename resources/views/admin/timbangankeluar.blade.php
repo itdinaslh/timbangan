@@ -5,7 +5,7 @@
 @section('PageTitle', 'Timbangan Masuk')
 
 @push('styles')
-<link href="/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+{{-- <link href="/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet"> --}}
 @endpush
 
 @section('content')
@@ -18,7 +18,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="breadcomb-list">
                             <div class="row">
-                                <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="breadcomb-wp">
                                         <div class="breadcomb-ctn">
                                             <h2>Berat Timbangan</h2>
@@ -28,7 +28,15 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                    <div class="breadcomb-report">
+                                        <select class="form-control" onchange="" id="timbangan">
+                                            <option value="192.168.1.28">Timbangan 1.28 </option>                                    
+                                            <option value="192.168.1.111">Timbangan 1.111 </option>
+                                            <option value="192.168.1.224">Timbangan 1.224 </option>
+                                        </select>    
+                                    </div>
+                                </div>
                                 <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
                                         {{-- @if($setting->setting_value == "manual") --}}
                                     <div class="breadcomb-report">
@@ -43,6 +51,12 @@
                                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">
                                             Timbangan Auto
                                         </button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+                                    <div class="breadcomb-report">
+                                        <button class="btn" id="printterakhir"><i class="notika-icon notika-print"></i>
+                                            Print Ulang</button>
                                     </div>
                                 </div>
                             </div>
@@ -98,7 +112,7 @@
             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
                 <div class="card">
                     <div class="card-body">
-                        <h2>Operator Masuk 
+                        <h2>Operator Keluar 
                             <span style="font-size:12px;"></span>
                         </h2>
                         <div class="data-table-list">
@@ -251,8 +265,8 @@
 @push('scripts')
 <!-- Dashboard 1 -->
 {{-- <script src="/js/dashboard/dashboard-1.js"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-<script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+<script src="/vendor/datatables/js/jquery.dataTables.min.js"></script> --}}
 <script>
     $('#printterakhir').click(function(){
         $(this).attr('disabled',true);

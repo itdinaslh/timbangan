@@ -5,7 +5,7 @@
 @section('PageTitle', 'Timbangan Masuk')
 
 @push('styles')
-<link href="/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+{{-- <link href="/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet"> --}}
 @endpush
 
 @section('content')
@@ -215,8 +215,8 @@
 @push('scripts')
 <!-- Dashboard 1 -->
 {{-- <script src="/js/dashboard/dashboard-1.js"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
-<script src="/vendor/datatables/js/jquery.dataTables.min.js"></script>
+{{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
+<script src="/vendor/datatables/js/jquery.dataTables.min.js"></script> --}}
 <script>
     $("body").on('keypress','#rfidauto',function(e) {
         var rfid = $('#rfidauto').val();
