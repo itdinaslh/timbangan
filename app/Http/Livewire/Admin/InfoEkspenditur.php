@@ -16,11 +16,17 @@ class InfoEkspenditur extends Component
     {
         $data = DB::connection('bg_db')->table('rfid_card as a')
             ->leftJoin('ekspenditur_list', 'a.ekspenditur', '=', 'ekspenditur_list.id')
-            ->leftJoin('tipe_truk', 'a.tipe', '=', 'tipe_truk.initial')
-            ->select('a.*', 'tipe_truk.initial', 'ekspenditur_list.ekspenditur_name')
+            ->select( 
+                'a.door_id', 
+                'a.truck_id',
+                'a.rfid_id',
+                'ekspenditur_list.ekspenditur_name',
+                'a.tipe',
+                'a.kir',
+                'a.status')
             ->when($this->filter, function ($builder) {
                 $builder->where('a.ekspenditur', $this->filter);
-            })->orderBy('id' ,'desc')
+            })->orderBy('a.id' ,'desc')
         ->paginate($this->show);
         $eks = DB::connection('bg_db')->table('ekspenditur_list')
             ->select([

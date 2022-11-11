@@ -27,6 +27,9 @@ use App\Http\Controllers\InfoController;
 // });
 
 Auth::routes();
+Route::get('/', function () {
+    return view('index');
+});
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
@@ -47,7 +50,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/permission/store', [PermissionController::class, 'store']);
     Route::post('/permission/delete/{id}', [PermissionController::class, 'delete']);
 
-    Route::get('/', [AdminController::class, 'AdminDashboard']);
+    Route::get('/dashboard', [AdminController::class, 'AdminDashboard']);
 
     //operator timbangan masuk
     Route::get('/timbangan/get', [AdminController::class, 'getdoorid'])->name('getdoor');

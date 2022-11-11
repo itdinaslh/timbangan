@@ -26,7 +26,7 @@
                     </form>
                 </div>
             </li>
-            <li><a class="ai-icon" href="/" aria-expanded="false">
+            <li><a class="ai-icon" href="/dashboard" aria-expanded="false">
                     <i class="flaticon-025-dashboard"></i>
                     <span class="nav-text">Dashboard</span>
                 </a>
